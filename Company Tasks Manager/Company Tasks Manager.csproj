@@ -33,8 +33,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,11 +56,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frm_main.cs">
+    <Compile Include="db_Tasks_Manager.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>db_Tasks_Manager.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db_Tasks_Manager.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>db_Tasks_Manager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db_Tasks_Manager.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>db_Tasks_Manager.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="frm_admin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_main.Designer.cs">
-      <DependentUpon>frm_main.cs</DependentUpon>
+    <Compile Include="frm_admin.Designer.cs">
+      <DependentUpon>frm_admin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_employee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_employee.Designer.cs">
+      <DependentUpon>frm_employee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_login.Designer.cs">
+      <DependentUpon>frm_login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Manager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Manager.Designer.cs">
+      <DependentUpon>frm_Manager.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_start.cs">
       <SubType>Form</SubType>
@@ -61,6 +103,30 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="tbl_admins.cs">
+      <DependentUpon>db_Tasks_Manager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_employeis.cs">
+      <DependentUpon>db_Tasks_Manager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_managers.cs">
+      <DependentUpon>db_Tasks_Manager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_tasks.cs">
+      <DependentUpon>db_Tasks_Manager.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="frm_admin.resx">
+      <DependentUpon>frm_admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_employee.resx">
+      <DependentUpon>frm_employee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_login.resx">
+      <DependentUpon>frm_login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Manager.resx">
+      <DependentUpon>frm_Manager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_start.resx">
       <DependentUpon>frm_start.cs</DependentUpon>
     </EmbeddedResource>
@@ -72,7 +138,16 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EntityDeploy Include="db_Tasks_Manager.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>db_Tasks_Manager.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="db_Tasks_Manager.edmx.diagram">
+      <DependentUpon>db_Tasks_Manager.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -86,15 +161,25 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="icons\75-512.png" />
-    <Content Include="icons\75_512.ico" />
-    <Content Include="icons\Business_4-02-128.png" />
-    <Content Include="icons\business_4_02_128.ico" />
-    <Content Include="icons\pngtree-task-icon-for-your-project-png-image_1574223.jpg" />
-    <Content Include="icons\x-18-128.png" />
-    <Content Include="icons\x_18_128.ico" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\75_512.ico" />
+    <None Include="icons\download1.png" />
+    <None Include="icons\download %281%29.png" />
+    <Content Include="db_Tasks_Manager.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>db_Tasks_Manager.Context.cs</LastGenOutput>
+      <DependentUpon>db_Tasks_Manager.edmx</DependentUpon>
+    </Content>
+    <Content Include="db_Tasks_Manager.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>db_Tasks_Manager.edmx</DependentUpon>
+      <LastGenOutput>db_Tasks_Manager.cs</LastGenOutput>
+    </Content>
+    <Content Include="icons\download1.ico" />
+    <Content Include="icons\download__1_.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

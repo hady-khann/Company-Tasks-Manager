@@ -22,7 +22,7 @@ namespace Company_Tasks_Manager
         private void frm_start_Load(object sender, EventArgs e)
         {
             FormBorderStyle = FormBorderStyle.None;
-
+            this.Refresh();
             int ranservices = 0;
             int time = 3000;
             while (ranservices != 6)
@@ -41,7 +41,7 @@ namespace Company_Tasks_Manager
                 else
                 {
                     ranservices++;
-                    lbl_status.Text = "MSSQLFDLauncher was already started"; lbl_status.Refresh();
+                    lbl_status.Text = "MSSQLFDLauncher is already started"; lbl_status.Refresh();
                     lbl_number.Text = ranservices + " / 6"; lbl_number.Refresh();
                     Thread.Sleep(time);
                 }
@@ -59,7 +59,7 @@ namespace Company_Tasks_Manager
                 else
                 {
                     ranservices++;
-                    lbl_status.Text = "MSSQLSERVER was already started"; lbl_status.Refresh();
+                    lbl_status.Text = "MSSQLSERVER is already started"; lbl_status.Refresh();
                     lbl_number.Text = ranservices + " / 6"; lbl_number.Refresh();
                     Thread.Sleep(time);
                 }
@@ -77,7 +77,7 @@ namespace Company_Tasks_Manager
                 else
                 {
                     ranservices++;
-                    lbl_status.Text = "SQLSERVERAGENT was already started"; lbl_status.Refresh();
+                    lbl_status.Text = "SQLSERVERAGENT is already started"; lbl_status.Refresh();
                     lbl_number.Text = ranservices + " / 6"; lbl_number.Refresh();
                     Thread.Sleep(time);
                 }
@@ -95,7 +95,7 @@ namespace Company_Tasks_Manager
                 else
                 {
                     ranservices++;
-                    lbl_status.Text = "MSSQLServerOLAPService was already started"; lbl_status.Refresh();
+                    lbl_status.Text = "MSSQLServerOLAPService is already started"; lbl_status.Refresh();
                     lbl_number.Text = ranservices + " / 6"; lbl_number.Refresh();
                     Thread.Sleep(time);
                 }
@@ -113,7 +113,7 @@ namespace Company_Tasks_Manager
                 else
                 {
                     ranservices++;
-                    lbl_status.Text = "SSASTELEMETRY was already started"; lbl_status.Refresh();
+                    lbl_status.Text = "SSASTELEMETRY is already started"; lbl_status.Refresh();
                     lbl_number.Text = ranservices + " / 6"; lbl_number.Refresh();
                     Thread.Sleep(time);
                 }
@@ -131,7 +131,7 @@ namespace Company_Tasks_Manager
                 else
                 {
                     ranservices++;
-                    lbl_status.Text = "SQLBrowser was already started"; lbl_status.Refresh();
+                    lbl_status.Text = "SQLBrowser is already started"; lbl_status.Refresh();
                     lbl_number.Text = ranservices + " / 6"; lbl_number.Refresh();
                     Thread.Sleep(time);
                 }
@@ -140,11 +140,6 @@ namespace Company_Tasks_Manager
 
             lbl_status.Text = "ALL SERVICES ARE STARTED ...."; lbl_status.Refresh();
 
-            frm_main frmm = new frm_main()
-            {
-                Opacity = 100
-            };
-            Thread.Sleep(time);
             this.Close();
 
 
@@ -165,9 +160,9 @@ namespace Company_Tasks_Manager
 
                     service.WaitForStatus(ServiceControllerStatus.Running, timeout);
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    MessageBox.Show(e.Message);
+                  
                 }
 
             }
@@ -183,9 +178,9 @@ namespace Company_Tasks_Manager
                         return true;
                     }
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    MessageBox.Show(e.Message);
+                    MessageBox.Show(ex.Message);
 
                 }
 
@@ -193,6 +188,10 @@ namespace Company_Tasks_Manager
             }
         }
 
-
+        private void pictureBox1_LoadCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            this.Refresh();
+            pictureBox1.Refresh();
+        }
     }
 }

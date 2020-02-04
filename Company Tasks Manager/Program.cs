@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,7 +17,10 @@ namespace Company_Tasks_Manager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frm_start());
+            //Application.Run(new frm_start());
+            //Thread.Sleep(2000);
+            Application.Run(new frm_login());
+
         }
     }
 }
