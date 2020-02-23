@@ -17,8 +17,8 @@ namespace Company_Tasks_Manager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new frm_start());
-            //Thread.Sleep(2000);
+            Application.Run(new frm_start());
+            Thread.Sleep(2000);
             Application.Run(new frm_login());
 
         }
